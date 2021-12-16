@@ -43,7 +43,7 @@ function App() {
         <Header />
         <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick}/>
         <Footer />
-        <PopupWithForm title='Редактировать профиль' name='edit' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm title='Редактировать профиль' name='edit' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} buttonText = 'Сохранить'>
           <label className="popup__label">
           <input
               type="text"
@@ -69,11 +69,11 @@ function App() {
               autoComplete="off"
           />
           <span id="activity-error" className="error"></span>
-          <button type="submit" className="popup__button">Сохранить</button>
+
         </label>
         </PopupWithForm>
 
-        <PopupWithForm title='Новое место' name='add' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm title='Новое место' name='add' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} buttonText = 'Создать'>
           <label className="popup__label" >
             <input
                 type="text"
@@ -96,11 +96,11 @@ function App() {
                 required
             />
             <span id="way-error" className="error"></span>
-            <button type="submit" className="popup__button">Создать</button>
+
           </label>
         </PopupWithForm>
 
-        <PopupWithForm title='Обновить аватар' name='avatar' isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm title='Обновить аватар' name='avatar' isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} buttonText='Сохранить'>
           <label className="popup__label">
             <input
                 type="url"
@@ -111,7 +111,7 @@ function App() {
                 required
             />
             <span id="way-avatar-error" className="error"></span>
-            <button type="submit" className="popup__button">Сохранить</button>
+
           </label>
         </PopupWithForm>
 

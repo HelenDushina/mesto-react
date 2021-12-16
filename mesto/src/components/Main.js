@@ -23,14 +23,8 @@ function Main(props) {
                 setUserDescription(res.about);
                 setUserAvatar(res.avatar);
 
-
-
             })
-
-
-
-
-        }
+        },[]
     );
 
     React.useEffect(() => {
@@ -38,7 +32,7 @@ function Main(props) {
             .then(initialCards=> {
                setCards(initialCards);
             });
-        }
+        }, []
     );
 
     // const getImageCard = (url) => {

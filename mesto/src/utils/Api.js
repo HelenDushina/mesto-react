@@ -1,11 +1,4 @@
 
-const onError = (res) =>{
-  if (res.ok) {
-    return res.json();
-  }
-  // если ошибка, отклоняем промис
-  return Promise.reject(`Ошибка: ${res.status}`);
-}
 
 class Api {
   constructor(options) {
