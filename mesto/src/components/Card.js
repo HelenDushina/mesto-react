@@ -19,7 +19,7 @@ const Card = (props) => {
             <button type="button" className="elements__button-remove"></button>
         </div>
         <div className="elements__rectangle">
-            <h2 className="elements__title"></h2>
+            <h2 className="elements__title">{props.name}</h2>
             <div className="elements__like-group">
                 <button type="button" className="elements__like"></button>
                 <p className="elements__like-count">{props.likes.length}</p>

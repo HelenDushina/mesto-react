@@ -18,12 +18,12 @@ function Main(props) {
         const responseUser = api.getUser()
             .then(res=> {
                 //отображаем инфо о пользователе
-
                 setUserName(res.name);
                 setUserDescription(res.about);
                 setUserAvatar(res.avatar);
-
-            })
+            }).catch((err) => {
+                console.log(err); // выведем ошибку в консоль
+            });
         },[]
     );
 
@@ -31,13 +31,12 @@ function Main(props) {
         const responce = api.getInitialCards()
             .then(initialCards=> {
                setCards(initialCards);
+            }).catch((err) => {
+                console.log(err); // выведем ошибку в консоль
             });
         }, []
     );
 
-    // const getImageCard = (url) => {
-    //     console.log(url);
-    // }
 
     return (
         <main className="content page__content">
