@@ -3,46 +3,20 @@ import plusPic from "../images/Plus.svg";
 import editPic from "../images/Vector.svg";
 import api from "../utils/Api";
 import Card from "../components/Card";
-
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 
 function Main(props) {
 
-    const [userName, setUserName] = React.useState("");
-    const [userDescription, setUserDescription] = React.useState("");
-    const [userAvatar, setUserAvatar] = React.useState("");
-    const [cards, setCards] = React.useState([]);
+    const currentUser = React.useContext(CurrentUserContext);
 
-    React.useEffect(() => {
-
-        const responseUser = api.getUser()
-            .then(res=> {
-                //отображаем инфо о пользователе
-                setUserName(res.name);
-                setUserDescription(res.about);
-                setUserAvatar(res.avatar);
-            }).catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
-        },[]
-    );
-
-    React.useEffect(() => {
-        const responce = api.getInitialCards()
-            .then(initialCards=> {
-               setCards(initialCards);
-            }).catch((err) => {
-                console.log(err); // выведем ошибку в консоль
-            });
-        }, []
-    );
 
 
     return (
         <main className="content page__content">
             <section className="profile page__content">
                 <div className="profile__groupedit">
-                    <img  src={userAvatar} alt="Аватар" className="profile__avatar"/>
+                    <img  src={currentUser.avatar} alt="Аватар" className="profile__avatar"/>
 
                     <button aria-label="edit" type="button" className="profile__avatar-edit" onClick={props.onEditAvatar}>
                         <img
@@ -54,7 +28,7 @@ function Main(props) {
                 </div>
                 <div className="profile__info">
                     <div className="profile__group">
-                        <h1 className="profile__name">{userName}</h1>
+                        <h1 className="profile__name">{currentUser.name}</h1>
                         <button aria-label="edit" type="button" className="profile__edit" onClick={props.onEditProfile}>
                             <img
                                 src={editPic}
@@ -63,7 +37,7 @@ function Main(props) {
                             />
                         </button>
                     </div>
-                    <p className="profile__activity">{userDescription}</p>
+                    <p className="profile__activity">{currentUser.about}</p>
                 </div>
                 <button type="button" className="profile__add-button"  onClick={props.onAddPlace}>
                     <img
@@ -74,14 +48,17 @@ function Main(props) {
                 </button>
             </section>
             <section className="elements page__content">
-                { cards.map(item =>
+                { props.cards.map(item =>
                 <Card
                     key = {item._id}
                     name = {item.name}
                     link = {item.link}
                     likes = {item.likes}
-                    card = {{name:item.name, link:item.link}}
+                    owner = {item.owner}
+                    card = {{name:item.name, link:item.link, likes:item.likes,_id:item._id}}
                     onCardClick = {props.onCardClick}
+                    onCardLike = {props.onCardLike}
+                    onCardDelete = {props.onCardDelete}
                 />)}
             </section>
         </main>
