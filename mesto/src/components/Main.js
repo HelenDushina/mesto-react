@@ -49,7 +49,7 @@ function Main(props) {
             </section>
             <section className="elements page__content">
                 { props.cards.map(item =>
-                <Card
+                    (<Card
                     key = {item._id}
                     name = {item.name}
                     link = {item.link}
@@ -59,7 +59,8 @@ function Main(props) {
                     onCardClick = {props.onCardClick}
                     onCardLike = {props.onCardLike}
                     onCardDelete = {props.onCardDelete}
-                />)}
+                />)
+                )}
             </section>
         </main>
     );
